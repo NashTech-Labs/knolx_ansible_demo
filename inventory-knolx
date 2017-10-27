@@ -1,0 +1,7 @@
+#List of hosts to be configured and host1 and host2 will be the addresses of hosts  
+
+[webservers]
+host1
+host2
+
+

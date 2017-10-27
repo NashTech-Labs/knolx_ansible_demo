@@ -1,0 +1,43 @@
+---
+- hosts: webservers
+  remote_user: ec2-user
+  become: yes
+  roles:
+     - apache
+  tasks:
+   - iptables:
+       flush: yes
+       comment: flush all rules
+   - iptables:
+       chain: INPUT
+       protocol: tcp
+       match: tcp
+       source: 103.62.237.65
+       destination_port: 80
+       jump: ACCEPT
+   - iptables:
+       chain: INPUT
+       protocol: tcp
+       match: tcp
+       source: 103.62.237.65
+       destination_port: 22
+       jump: ACCEPT
+   - iptables:
+       chain: OUTPUT
+       protocol: tcp
+       match: tcp
+       destination_port: 22
+       jump: ACCEPT
+   - iptables:
+       chain: FORWARD
+       policy: DROP
+  
+ 
+
+
+
+
+    
+     
+
+  
